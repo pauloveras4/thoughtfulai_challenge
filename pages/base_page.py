@@ -37,6 +37,7 @@ class BasePage(object):
                             BasePageLocators.BASE_PAGE_SITE_HEADER_LOCATOR)
             if element_exists:
                 return 0
+            logger.warning("Header not found!")
             return 2
         except:
             logger.error("An error occurred while trying to access Reuters page.")
