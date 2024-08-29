@@ -1,9 +1,17 @@
 from robocorp.tasks import task
+
 from lib.extended_selenium import ExtendedSelenium
+
+from pages.base_page import BasePage
+
+import logging
+
+logging.basicConfig(filename='RPA_Reuters.log', filemode='a', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %I:%M:%S')
+
 
 @task
 def minimal_task():
     selenium = ExtendedSelenium()
-    selenium.open_site("https://www.reuters.com")
-    selenium.looking_at_element('//*[@id="fusion-app"]/header/div/div/div/div/div[3]/div[1]')
+    base_page = BasePage(selenium)
+    base_page.access_reuters_page()
     print("Feito")
