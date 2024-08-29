@@ -4,7 +4,7 @@ class HomePageLocators(object):
     the home page will be stored in here.
     """
 
-    HOME_PAGE_SEARCH_BAR_ICON = "//div[contains(@class, 'search-bar')]"
+    HOME_PAGE_SEARCH_BAR_ICON_LOCATOR = "//div[contains(@class, 'search-bar')]"
 
-    HOME_PAGE_SEARCH_BAR_INPUT = "//*[contains(@class, 'search-bar__bar-container')]/input"
+    HOME_PAGE_SEARCH_BAR_INPUT_LOCATOR = "//*[contains(@class, 'search-bar__bar-container')]/input"
     

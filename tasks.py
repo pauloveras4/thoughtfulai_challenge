@@ -14,4 +14,3 @@ def minimal_task():
     selenium = ExtendedSelenium()
     base_page = BasePage(selenium)
     base_page.access_reuters_page()
-    print("Feito")
