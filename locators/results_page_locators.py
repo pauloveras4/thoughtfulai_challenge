@@ -16,4 +16,4 @@ class ResultsPageLocators(object):
     
     RESULT_ITEM_HEADING_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')]//span[@data-testid='Heading'])[{index}]"
   
-    RESULT_ITEM_DATE_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')]//time[@data-testid='Text])[{indeX}]"
+    RESULT_ITEM_DATE_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')]//time[@data-testid='Text])[{index}]"
