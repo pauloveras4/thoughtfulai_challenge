@@ -1,13 +1,12 @@
-from locators.home_page_locators import HomePageLocators
-
-from pages.base_page import BasePage
-
 import logging
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+
+from locators.home_page_locators import HomePageLocators
+
+from pages.base_page import BasePage
 
 
 logger = logging.getLogger(__name__)
@@ -20,13 +19,10 @@ class HomePage(BasePage):
     ----------
     selenium : SeleniumLibrary
         instance of SeleniumLibrary which will be used in this page
-    wait : WebDriverWait
-        instance of WebDriverWait which will allow Selenium to wait for DOM objects
     """
     
     def __init__(self, selenium):
        self.selenium = selenium
-       self.wait = WebDriverWait(self.selenium.driver, 10)
 
     def click_search_bar_icon(self):
         logger.info("Clicking search bar icon.")
