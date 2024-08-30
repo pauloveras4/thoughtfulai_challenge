@@ -10,10 +10,10 @@ class ResultsPageLocators(object):
 
     RESULTS_PAGE_SORT_BY_SELECT_BUTTON_LOCATOR = "//button[@id='sortby']"
     
-    RESULTS_PAGE_SORT_BY_SELECT_ITEM_LOCATOR = lambda order: f"//li[contains(@id, '{order}')]"
+    RESULTS_PAGE_SORT_BY_SELECT_ITEM_LOCATOR = lambda order: f"//li[contains(@data-key, '{order}')]"
     
     RESULTS_PAGE_SEARCH_RESULT_ITEM_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')])[{index}]"
     
     RESULT_ITEM_HEADING_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')]//span[@data-testid='Heading'])[{index}]"
   
-    RESULT_ITEM_DATE_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')]//time[@data-testid='Text])[{index}]"
+    RESULT_ITEM_DATE_LOCATOR = lambda index: f"(//li[contains(@class, 'search-results__item')]//time[@data-testid='Text'])[{index}]"
