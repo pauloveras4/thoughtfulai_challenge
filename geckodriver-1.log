@@ -1,34 +1,88 @@
-1724974914203	geckodriver	INFO	Listening on 127.0.0.1:54211
-1724974917322	mozrunner::runner	INFO	Running command: "C:\\Users\\xka99\\.cache\\selenium\\firefox\\win64\\129.0.2\\firefox.exe" "--marionette" "--remote-debuggin ... ocalhost" "-no-remote" "-profile" "C:\\Users\\xka99\\AppData\\Local\\robocorp\\temp\\133ccb27a098f855\\rust_mozprofileD8o9n6"
+1725019712594	geckodriver	INFO	Listening on 127.0.0.1:50543
+1725019715791	mozrunner::runner	INFO	Running command: "C:\\Users\\xka99\\.cache\\selenium\\firefox\\win64\\129.0.2\\firefox.exe" "--marionette" "--remote-debuggin ... ocalhost" "-no-remote" "-profile" "C:\\Users\\xka99\\AppData\\Local\\robocorp\\temp\\4d71576629c6df66\\rust_mozprofilezOpZpB"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1724974918537	Marionette	INFO	Marionette enabled
-1724974918941	Marionette	INFO	Listening on port 54223
-WebDriver BiDi listening on ws://127.0.0.1:54212
-Read port: 54223
-1724974919300	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1725019720082	Marionette	INFO	Marionette enabled
+1725019720510	Marionette	INFO	Listening on port 50553
+WebDriver BiDi listening on ws://127.0.0.1:50544
+Read port: 50553
+1725019720824	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 JavaScript error: https://www.reuters.com/, line 66: TypeError: googleAdContainer is null
-JavaScript warning: https://pagead2.googlesyndication.com/bg/Y4kDWM76wifkQEpdyV_qV919xjUbW68Vp6zTd8kmBRk.js line 2 > eval line 2425 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
-1724974949455	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
-1724974951204	Marionette	INFO	Stopped listening on port 54223
-Dynamically enable window occlusion 1
-console.error: services.settings: 
-Object
-  - prototype Object
-    - columnNumber = 0
-    - data = null
-    - filename = resource://gre/modules/ServiceRequest.sys.mjs
-    - lineNumber = 133
-    - location = {"name":"open","filename":"resource://gre/modules/ServiceRequest.sys.mjs","sourceId":25,"lineNumber":133,"columnNumber":11,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch/<","sourceId":24,"lineNumber":266,"columnNumber":15,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch","sourceId":24,"lineNumber":217,"columnNumber":12,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-common/kinto-http-client.sys.mjs","name":"timedFetch/<","sourceId":460,"lineNumber":569,"columnNumber":12,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-common/kinto-http-client.sys.mjs","name":"timedFetch","sourceId":460,"lineNumber":544,"columnNumber":12,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-common/kinto-http-client.sys.mjs","name":"request","sourceId":460,"lineNumber":634,"columnNumber":33,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-common/kinto-http-client.sys.mjs","name":"execute","sourceId":460,"lineNumber":2643,"columnNumber":36,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-common/kinto-http-client.sys.mjs","name":"getData","sourceId":460,"lineNumber":1119,"columnNumber":40,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"maybeSync","sourceId":22,"lineNumber":712,"columnNumber":54,"sourceLine":"","asyncCause":null,"asyncCaller":null,"caller":null,"formattedStack":"maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"getData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"execute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"request@resource://services-common/kinto-http-client.sys.mjs:634:33\nexecute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"timedFetch@resource://services-common/kinto-http-client.sys.mjs:544:12\nrequest@resource://services-common/kinto-http-client.sys.mjs:634:33\nexecute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"timedFetch/<@resource://services-common/kinto-http-client.sys.mjs:569:12\ntimedFetch@resource://services-common/kinto-http-client.sys.mjs:544:12\nrequest@resource://services-common/kinto-http-client.sys.mjs:634:33\nexecute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"fetch@resource://services-settings/Utils.sys.mjs:217:12\ntimedFetch/<@resource://services-common/kinto-http-client.sys.mjs:569:12\ntimedFetch@resource://services-common/kinto-http-client.sys.mjs:544:12\nrequest@resource://services-common/kinto-http-client.sys.mjs:634:33\nexecute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"fetch/<@resource://services-settings/Utils.sys.mjs:266:15\nfetch@resource://services-settings/Utils.sys.mjs:217:12\ntimedFetch/<@resource://services-common/kinto-http-client.sys.mjs:569:12\ntimedFetch@resource://services-common/kinto-http-client.sys.mjs:544:12\nrequest@resource://services-common/kinto-http-client.sys.mjs:634:33\nexecute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}},"formattedStack":"open@resource://gre/modules/ServiceRequest.sys.mjs:133:11\nfetch/<@resource://services-settings/Utils.sys.mjs:266:15\nfetch@resource://services-settings/Utils.sys.mjs:217:12\ntimedFetch/<@resource://services-common/kinto-http-client.sys.mjs:569:12\ntimedFetch@resource://services-common/kinto-http-client.sys.mjs:544:12\nrequest@resource://services-common/kinto-http-client.sys.mjs:634:33\nexecute@resource://services-common/kinto-http-client.sys.mjs:2643:36\ngetData@resource://services-common/kinto-http-client.sys.mjs:1119:40\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54\n","nativeSavedFrame":{}}
-    - message = 
-    - name = 
-    - result = 2152071198
-    - stack = open@resource://gre/modules/ServiceRequest.sys.mjs:133:11|fetch/<@resource://services-settings/Utils.sys.mjs:266:15|fetch@resource://services-settings/Utils.sys.mjs:217:12|timedFetch/<@resource://services-common/kinto-http-client.sys.mjs:569:12|timedFetch@resource://services-common/kinto-http-client.sys.mjs:544:12|request@resource://services-common/kinto-http-client.sys.mjs:634:33|execute@resource://services-common/kinto-http-client.sys.mjs:2643:36|getData@resource://services-common/kinto-http-client.sys.mjs:1119:40|maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:712:54|
-  - prototype Object
-console.warn: services.settings: main/search-config-overrides-v2 sync interrupted by shutdown
-console.warn: services.settings: main/search-config sync interrupted by shutdown
-console.warn: services.settings: main/fingerprinting-protection-overrides sync interrupted by shutdown
-console.warn: services.settings: main/cookie-banner-rules-list sync interrupted by shutdown
-console.warn: services.settings: main/search-default-override-allowlist sync interrupted by shutdown
-console.error: ({details:{id:"49db3966-ee3d-979b-5014-4011f6d5e79b", last_modified:1709217485713, bucket:"main", collection:"search-config-overrides", host:"firefox.settings.services.mozilla.com"}})
+JavaScript warning: https://pagead2.googlesyndication.com/bg/eMxTxvUdi8Spr_Bg1Xew8PuPzYwQ9AaFJ7qain9QBEw.js line 2 > eval line 3101 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js, line 85: Script terminated by timeout at:
+Qc@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:85:2420
+wg.prototype.ping/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:125:664
+wg.prototype.ping@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:125:641
+jf.prototype.sendNow@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:102:245
+ro/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:250:205
+ro/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:250:178
+O/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:91:478
+M/this.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:888
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:82:903
+dd.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:89:806
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:82:903
+dd.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:89:806
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:82:903
+dd.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:89:806
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:82:903
+dd.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:89:806
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+af/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:100:4025
+M/this.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:888
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+O/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:91:471
+M/this.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:888
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+bo/</h/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:242:1969
+Va@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:339
+Sa.prototype.flush@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:147
+Ua@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:47:490
+oh/c/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:136:292
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+jg/</</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:119:516
+Ra.prototype.Qb/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:47:322
+jg/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:119:525
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+jg/</</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:119:516
+Ra.prototype.Qb/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:47:322
+jg/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:119:525
+wc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:218
+n.pd@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:698
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:79:465
+f@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:92:1257
+
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/eMxTxvUdi8Spr_Bg1Xew8PuPzYwQ9AaFJ7qain9QBEw.js line 2 > eval line 6593 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/eMxTxvUdi8Spr_Bg1Xew8PuPzYwQ9AaFJ7qain9QBEw.js line 2 > eval line 2630 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1725019743933	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://player.aniview.com/ssync/62f53b2c7850d0786f227f64/ssync.html?pid=62f53b2c7850d0786f227f64&r=https%3A%2F%2Fvisitor.us-west1.gcp.omnitagjs.com%2Fvisitor%2Fsync%3Fname%3DANIVIEW%26ttl%3D720%26uid%3De8ecb87ff2ef3a3b16ba16c51e7986ac%26visitor%3D%5BAV_UID%5D%26gdpr%3D0%26gdpr_consent%3D&gdpr=0&gdpr_consent=, line 82: unreachable code after return statement
+1725019746446	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1725019750089	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.

@@ -9,7 +9,6 @@ class BasePage(object):
     Base class to initialize the base page that will store relevant
     stuff for all pages.
     
-    ```
     Attributes
     ----------
     selenium : SeleniumLibrary
