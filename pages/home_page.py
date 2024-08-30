@@ -24,7 +24,6 @@ class HomePage(BasePage):
     
     def __init__(self, selenium):
        self.selenium = selenium
-       self.wait = WebDriverWait(self.selenium.driver, 10)
 
     def click_search_bar_icon(self):
         logger.info("Clicking search bar icon.")

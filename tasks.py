@@ -25,5 +25,5 @@ def minimal_task():
     results_page = ResultsPage(selenium)
     results_page.select_section_filter_from_dropdown("World")
     results_page.select_sort_by_order_from_dropdown("Newest")
-    results_page.iter_through_current_news(1)
+    results_page.iter_through_current_news(7)
     print("brkpt")

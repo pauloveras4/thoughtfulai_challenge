@@ -1,4 +1,5 @@
 import logging
+import requests
 
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -25,6 +26,7 @@ class ResultsPage(BasePage):
     def __init__(self, selenium):
         self.selenium = selenium
         self.wait = WebDriverWait(self.selenium.driver, 10)
+        self.action =  ActionChains(self.selenium.driver)
 
     def _click_section_filter_dropdown(self):
         logger.info("Clicking section filter dropdown.")
@@ -145,7 +147,36 @@ class ResultsPage(BasePage):
         except Exception as e:
             logger.fatal("Unable to find current news heading") 
     
-    def _iter_through_current_news(self, index_current_item):
+    def _get_current_image(self, current_index_str):
+        try:
+            image_element_locator = ResultsPageLocators.RESULT_ITEM_IMAGE_LOCATOR(current_index_str)
+            
+            image_element = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        image_element_locator
+                    )
+                )
+            )
+            
+            return image_element.get_attribute('alt'), image_element.get_attribute('src')
+        
+        except Exception as e:
+            logger.fatal("Unable to find current image")
+    
+    def _move_to_image(self, current_index_str):
+        image_element = self.selenium.driver.find_element(
+            By.XPATH,
+            ResultsPageLocators \
+                .RESULT_ITEM_IMAGE_LOCATOR(current_index_str)
+        )
+        self.selenium.driver.execute_script("arguments[0].scrollIntoView(true);", image_element)
+        self.action \
+            .move_to_element(image_element) \
+            .perform()
+            
+    def iter_through_current_news(self, index_current_item):
         logger.info("Iterating through current news.")
         current_index_str = str(index_current_item)
         try:
@@ -154,9 +185,22 @@ class ResultsPage(BasePage):
             date = self._get_current_date(current_index_str)
             date = DateParser(date).parse_date_to_proper_string()
             
-            return {'title': heading, 'date': date, }
+            image = self._get_current_image(current_index_str)
+            
+            # Scrolls down to find more images
+            if (index_current_item) % 7 == 0:
+                self._move_to_image(current_index_str)
+
+            image_filename =  f"{image[0]}.jpg"
+
+            response = requests.get(image[1])
+            
+            if response.status_code == 200:
+                with open(f"./output/{image_filename}", "wb") as file:
+                    file.write(response.content)
+            
+                
+            return {'title': heading, 'date': date, 'image': image_filename}
         except Exception as e:
             logger.fatal("Unable to find current news item")
         
-        
-
