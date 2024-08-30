@@ -6,7 +6,7 @@ class ResultsPageLocators(object):
 
     RESULTS_PAGE_SECTION_SELECT_BUTTON_LOCATOR = "//button[@id='sectionfilter']"
 
-    RESULTS_PAGE_SECTION_SELECT_ITEM_LOCATOR = lambda section: f"//li[contains(@id, '{section}')]'"
+    RESULTS_PAGE_SECTION_SELECT_ITEM_LOCATOR = lambda section: f"//li[contains(@id, '{section}')]"
 
     RESULTS_PAGE_SORT_BY_SELECT_BUTTON_LOCATOR = "//button[@id='sortby']"
     

@@ -1,8 +1,9 @@
 import logging
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.home_page_locators import HomePageLocators
 
@@ -23,6 +24,7 @@ class HomePage(BasePage):
     
     def __init__(self, selenium):
        self.selenium = selenium
+       self.wait = WebDriverWait(self.selenium.driver, 10)
 
     def click_search_bar_icon(self):
         logger.info("Clicking search bar icon.")
@@ -57,7 +59,7 @@ class HomePage(BasePage):
                     search_text)
             search_bar_input_element.send_keys(Keys.ENTER)
             return 0
-        except:
+        except Exception as e:
             logger.error("Failed to find or type search text into searchbar.")
             return 1
     

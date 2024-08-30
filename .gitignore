@@ -16,4 +16,5 @@ testrun/*
 .~lock*
 *.pkl
 geckodriver*
+geckodriver-1.log
 RPA_Reuters.log

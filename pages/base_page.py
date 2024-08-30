@@ -1,5 +1,6 @@
 import logging
 
+
 from locators.base_page_locators import BasePageLocators
 
 logger = logging.getLogger(__name__)
