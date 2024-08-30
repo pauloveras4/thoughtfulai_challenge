@@ -1,12 +1,13 @@
 import logging
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.results_page_locators import ResultsPageLocators
-
 from pages.base_page import BasePage
+from utils.date_parser import DateParser
 
 logger = logging.getLogger(__name__)
 
@@ -144,18 +145,18 @@ class ResultsPage(BasePage):
         except Exception as e:
             logger.fatal("Unable to find current news heading") 
     
-    def iter_through_current_news(self, index_current_item):
+    def _iter_through_current_news(self, index_current_item):
         logger.info("Iterating through current news.")
         current_index_str = str(index_current_item)
         try:
             heading = self._get_current_heading(current_index_str)
+            
             date = self._get_current_date(current_index_str)
-            print(heading)
-            print(date)
+            date = DateParser(date).parse_date_to_proper_string()
+            
+            return {'title': heading, 'date': date, }
         except Exception as e:
             logger.fatal("Unable to find current news item")
-        
-        
         
         
 
