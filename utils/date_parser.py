@@ -42,5 +42,6 @@ class DateParser(object):
 
         news_date = datetime.strptime(self.date, "%B %d, %Y")
         return datetime.strftime(news_date, "%Y-%m-%d %H:%M")
+    
             
     

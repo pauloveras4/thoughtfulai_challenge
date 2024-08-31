@@ -9,6 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from locators.results_page_locators import ResultsPageLocators
 from pages.base_page import BasePage
 from utils.date_parser import DateParser
+from utils.currency_parser import CurrencyParser
 
 logger = logging.getLogger(__name__)
 
@@ -175,12 +176,20 @@ class ResultsPage(BasePage):
         self.action \
             .move_to_element(image_element) \
             .perform()
-            
-    def iter_through_current_news(self, index_current_item):
+    
+    def _download_image(image_source, image_filename):
+        response = requests.get(image_source)
+        
+        if response.status_code == 200:
+            with open(f"./output/{image_filename}", "wb") as file:
+                file.write(response.content)
+        
+        
+    def _iter_through_current_news(self, index_current_item, search_query):
         logger.info("Iterating through current news.")
         current_index_str = str(index_current_item)
         try:
-            heading = self._get_current_heading(current_index_str)
+            title = self._get_current_heading(current_index_str)
             
             date = self._get_current_date(current_index_str)
             date = DateParser(date).parse_date_to_proper_string()
@@ -191,16 +200,24 @@ class ResultsPage(BasePage):
             if (index_current_item) % 7 == 0:
                 self._move_to_image(current_index_str)
 
+            image_source = image[1]
             image_filename =  f"{image[0]}.jpg"
-
-            response = requests.get(image[1])
             
-            if response.status_code == 200:
-                with open(f"./output/{image_filename}", "wb") as file:
-                    file.write(response.content)
+            self._download_image(image_source, image_filename)
             
-                
-            return {'title': heading, 'date': date, 'image': image_filename}
+            search_query_count = title.count(search_query)
+            
+            currency_in_title = CurrencyParser(title).verifies_title_contains_currency()
+                       
+            return {
+                'title': title, 
+                'date': date, 
+                'filename_image': image_filename, 
+                'search_query_count': search_query_count, 
+                'currency_in_title': str(currency_in_title)
+                }
+            
         except Exception as e:
             logger.fatal("Unable to find current news item")
+            
         
