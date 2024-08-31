@@ -24,6 +24,7 @@ class HomePage(BasePage):
     
     def __init__(self, selenium):
        self.selenium = selenium
+       self.wait = WebDriverWait(selenium.driver, 10)
 
     def click_search_bar_icon(self):
         logger.info("Clicking search bar icon.")
@@ -31,9 +32,10 @@ class HomePage(BasePage):
             search_bar_icon_exists = self.selenium.is_element_enabled(
                 HomePageLocators.HOME_PAGE_SEARCH_BAR_ICON_LOCATOR
             )
+            
             if search_bar_icon_exists:
                logging.info("Search bar icon exists, clicking it...") 
-               self.selenium.click_element_if_visible(
+               self.selenium.click_element_when_clickable(
                     HomePageLocators.HOME_PAGE_SEARCH_BAR_ICON_LOCATOR
                 )
                return 0

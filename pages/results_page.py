@@ -26,7 +26,7 @@ class ResultsPage(BasePage):
     def __init__(self, selenium):
         self.selenium = selenium
         self.wait = WebDriverWait(self.selenium.driver, 10)
-        self.action =  ActionChains(self.selenium.driver)
+        self.action = ActionChains(self.selenium.driver)
 
     def _click_section_filter_dropdown(self):
         logger.info("Clicking section filter dropdown.")
