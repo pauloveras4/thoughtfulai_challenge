@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from dateutil.relativedelta import relativedelta
 
 class DateParser(object):
     
@@ -43,5 +44,7 @@ class DateParser(object):
         news_date = datetime.strptime(self.date, "%B %d, %Y")
         return datetime.strftime(news_date, "%Y-%m-%d %H:%M")
     
+    def parse_string_to_proper_date(self, date):
+        return datetime.strptime(date, "%Y-%m-%d %H:%M")
             
     

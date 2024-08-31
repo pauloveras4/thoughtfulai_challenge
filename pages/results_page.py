@@ -185,7 +185,7 @@ class ResultsPage(BasePage):
                 file.write(response.content)
         
         
-    def _iter_through_current_news(self, index_current_item, search_query):
+    def _iter_through_current_news_article(self, index_current_item, search_query):
         logger.info("Iterating through current news.")
         current_index_str = str(index_current_item)
         try:
