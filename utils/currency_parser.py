@@ -8,10 +8,10 @@ class CurrencyParser(object):
     def verifies_title_contains_currency(self):
         
         array_verify_currency = [
-            self._verifies_currency_up_to_hundreds(self.title),
-            self._verifies_currency_up_to_thousands(self.title),
-            self.verifies_currency_up_to_dozens(self.title),
-            self.verifies_currency_up_to_dozens_iso4217(self.title)
+            self._verifies_currency_up_to_hundreds(),
+            self._verifies_currency_up_to_thousands(),
+            self._verifies_currency_up_to_dozens(),
+            self._verifies_currency_up_to_dozens_iso_4217()
         ]
         
         is_there_currency_in_title = any(array_verify_currency)    
