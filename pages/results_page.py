@@ -134,10 +134,9 @@ class ImageArticleElement(BasePageElement):
         current index in str format
     """
     
-    def __init__(self, selenium, action_chains, index):
+    def __init__(self, selenium, index):
         super()
         self.selenium = selenium
-        self.action_chains = action_chains
         self.index = index
         self.locator = ResultsPageLocators.RESULT_ITEM_IMAGE_LOCATOR(self.index)
 
@@ -287,8 +286,10 @@ class ResultsPage(BasePage):
         current_index_str = str(index_current_item + 1)
         try:
             logger.info("Capturing title from article...")
-            title = HeadingArticleElement(self.selenium, current_index_str). \
-            __get_attribute__("textContent")
+            title_element = HeadingArticleElement(self.selenium, current_index_str)
+            title_element.__wait__()
+            
+            title = title_element.__get_attribute__("textContent")
             logger.info("Current news article title: ", title)
              
             logger.info("Capturing date from article...") 
@@ -300,7 +301,7 @@ class ResultsPage(BasePage):
             logger.info("Current news article date: ", date)
             
             logger.info("Capturing image from article")
-            image = ImageArticleElement(self.selenium, self.action_chains, current_index_str)
+            image = ImageArticleElement(self.selenium, current_index_str)
             image_attrs = {}
             image_attrs['alt'] = image.__get_attribute__("alt")
             image_attrs['src'] = image.__get_attribute__("src")

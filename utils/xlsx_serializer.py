@@ -22,9 +22,21 @@ class XLSXSerializer(object):
         self.excel_filesystem_lib.set_cell_value(row=1, column=4, value='Search Query Count')
         self.excel_filesystem_lib.set_cell_value(row=1, column=5, value='Contains Currency')
         
+        # Iterate through array and insert values in cells
         for row_index, item in enumerate(results_array):
             for column_index, key in enumerate(item):
                 self.excel_filesystem_lib.set_cell_value(row=row_index+2, column=column_index+1, value=item[key])
+       
+        # Autosize columns
+        self.excel_filesystem_lib.auto_size_columns("A", width=80)
+        self.excel_filesystem_lib.auto_size_columns("B", width=30)
+        self.excel_filesystem_lib.auto_size_columns("C", width=80)
+        self.excel_filesystem_lib.auto_size_columns("D", width=30)
+        self.excel_filesystem_lib.auto_size_columns("E", width=20)
         
+        # Style headers with bold and center content
+        self.excel_filesystem_lib.set_styles("A1:E1", align_horizontal="center", align_vertical="center", bold=True, font_name="Calibri", size=12)
+        
+        # Save workbook
         self.excel_filesystem_lib.save_workbook(self.filename)
         return 0
