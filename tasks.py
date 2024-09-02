@@ -3,7 +3,7 @@ import logging
 from robocorp.tasks import task
 from RPA.Robocorp.WorkItems import WorkItems
 
-from lib.extended_selenium import ExtendedSelenium
+from lib.custom_selenium import CustomSelenium
 
 from pages.base_page import BasePage
 from pages.home_page import HomePage
@@ -21,19 +21,23 @@ logging.basicConfig(
 
 @task
 def minimal_task():
-    """ items = WorkItems()
+    """
+    items = WorkItems()
     variables = items.get_work_item_variables()
     search_query = variables['search_query']
     section = variables['section']
     months_index = variables['months_index']
-    
- """    
+    """
     search_query = "cookies"
     section = "All"
     months_index = "0"
     months_index = int(months_index)
+   
+    # Initializing Selenium
+    selenium = CustomSelenium()
+    selenium.set_webdriver()
     
-    selenium = ExtendedSelenium()
+    # Initializing BasePage
     base_page = BasePage(selenium)
     base_page.access_reuters_page()
     

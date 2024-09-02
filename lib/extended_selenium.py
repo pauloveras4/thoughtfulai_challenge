@@ -1,6 +1,7 @@
 from RPA.Browser.Selenium import Selenium
 from webdrivermanager import ChromeDriverManager
 from SeleniumLibrary.base import keyword
+from selenium import webdriver
 
 class ExtendedSelenium(Selenium):
 
@@ -8,7 +9,15 @@ class ExtendedSelenium(Selenium):
         Selenium.__init__(self, *args, **kwargs)
         cdm = ChromeDriverManager(link_path="AUTO")
         cdm.download_and_install()
-        
+    
+    def set_firefox_options(self):
+        firefox_options = {
+            "arguments": [
+                "--headless"  # Enable headless mode
+            ]
+        }
+        return firefox_options
+    
     @keyword
     def looking_at_element(self, locator):
         element = self.get_webelement(locator)
@@ -19,9 +28,11 @@ class ExtendedSelenium(Selenium):
         desired_capabilities = {
             "goog:loggingPrefs" : { 'browser':'ALL',  'driver': 'ALL', 'performance': 'ALL' }
         }
+        options = self.set_firefox_options()
         self.open_browser(
             url=url,
             desired_capabilities=desired_capabilities,
+            options=options,
             **kwargs
         )
 

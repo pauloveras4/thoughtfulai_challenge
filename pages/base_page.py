@@ -32,15 +32,8 @@ class BasePage(object):
         """
         logger.info("Accessing Reuters page.")
         try:
-            self.selenium.open_site("https://www.reuters.com")
+            self.selenium.open_url("https://www.reuters.com")
             logger.info("Checking news header exists.")
-            element_exists = self.selenium.is_element_enabled(
-                            BasePageLocators.BASE_PAGE_SITE_HEADER_LOCATOR)
-            if element_exists:
-                return 0
-            logger.warning("Header not found!")
-            return 2
         except Exception as e:
-            print(e)
             logger.error("An error occurred while trying to access Reuters page. The following exception occurred: ", str(e))
             return 1
