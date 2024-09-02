@@ -189,7 +189,6 @@ class ResultsPage(BasePage):
         self.selenium = selenium
         self.months_index = months_index
         self.search_query = search_query
-        self.wait = WebDriverWait(self.selenium.driver, 10)
         self.action_chains = ActionChains(self.selenium.driver)
 
     def _click_section_filter_dropdown(self):
