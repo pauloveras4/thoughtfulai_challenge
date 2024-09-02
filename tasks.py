@@ -10,7 +10,13 @@ from pages.home_page import HomePage
 from pages.results_page import ResultsPage
 from utils.xlsx_serializer import XLSXSerializer
 
-logging.basicConfig(filename='output/RPA_Reuters.log', filemode='a', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %I:%M:%S')
+logging.basicConfig(
+   filename='output/RPA_Reuters.log',
+   filemode='a',
+   level=logging.INFO,
+   format='%(asctime)s %(message)s',
+   datefmt='%d/%m/%Y %I:%M:%S'
+   )
 
 
 @task

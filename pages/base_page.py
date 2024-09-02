@@ -40,6 +40,7 @@ class BasePage(object):
                 return 0
             logger.warning("Header not found!")
             return 2
-        except:
-            logger.error("An error occurred while trying to access Reuters page.")
+        except Exception as e:
+            print(e)
+            logger.error("An error occurred while trying to access Reuters page. The following exception occurred: ", e)
             return 1
