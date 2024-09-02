@@ -2,7 +2,6 @@ import logging
 import requests
 import re
 
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -189,7 +188,6 @@ class ResultsPage(BasePage):
         self.selenium = selenium
         self.months_index = months_index
         self.search_query = search_query
-        self.action_chains = ActionChains(self.selenium.driver)
 
     def _click_section_filter_dropdown(self):
         logger.info("Clicking section filter dropdown.")
@@ -311,7 +309,7 @@ class ResultsPage(BasePage):
             
             # If current item's index is divisible by 5, move viewport to current image
             if index_current_item % 5 == 0:
-                image.__move_to_element__(self.action_chains)
+                image.__move_to_element__()
                         
             # Initializes variables for image parsing
             image_source = image_attrs['src']

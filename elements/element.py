@@ -1,7 +1,7 @@
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
 
 class BasePageElement(object):
     """
@@ -61,8 +61,9 @@ class BasePageElement(object):
         selenium = self.selenium
         self.__get_element__().send_keys(*key)
         
-    def __move_to_element__(self, action_chains):
+    def __move_to_element__(self):
         self.selenium.driver.execute_script("arguments[0].scrollIntoView(true);", self.__get_element__())
+        self.action_chains = ActionChains(self.selenium.driver)
         self.action_chains \
             .move_to_element(self.__get_element__()) \
             .perform()
