@@ -1,6 +1,7 @@
 import logging
 
 from robocorp.tasks import task
+from RPA.Robocorp.WorkItems import WorkItems
 
 from lib.extended_selenium import ExtendedSelenium
 
