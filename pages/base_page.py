@@ -42,5 +42,5 @@ class BasePage(object):
             return 2
         except Exception as e:
             print(e)
-            logger.error("An error occurred while trying to access Reuters page. The following exception occurred: ", e)
+            logger.error("An error occurred while trying to access Reuters page. The following exception occurred: ", str(e))
             return 1
