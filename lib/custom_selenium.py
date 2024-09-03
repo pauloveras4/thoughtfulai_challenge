@@ -15,7 +15,7 @@ class CustomSelenium:
 
     def set_chrome_options(self, user_agent):
         options = webdriver.ChromeOptions()
-        #options.add_argument("--headless")
+        options.add_argument("--headless")
         options.add_experimental_option('excludeSwitches', ['enable-logging', 'enable-automation'])
         options.add_experimental_option('useAutomationExtension', False)
         options.add_argument("--disable-blink-features=AutomationControlled")
