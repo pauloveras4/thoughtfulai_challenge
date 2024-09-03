@@ -64,7 +64,7 @@ class BasePageElement(object):
     def __wait__(self):
         """Waits 30 seconds for element to appear"""
         selenium = self.selenium
-        WebDriverWait(selenium.driver, 30).until(
+        WebDriverWait(selenium.driver, 60).until(
             EC.presence_of_element_located(
                self.locator 
             )

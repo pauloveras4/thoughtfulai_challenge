@@ -28,6 +28,7 @@ class AcceptAllCookiesButtonElement(BasePageElement):
         self.selenium = selenium
     
     locator = HomePageLocators.HOME_PAGE_ACCEPT_ALL_COOKIES_BUTTON
+    
 class SearchBarIconButtonElement(BasePageElement):
     """
     This class finds the element for the search bar icon which will be clicked so the modal appears. 
@@ -101,6 +102,7 @@ class HomePage(BasePage):
             return 0
         except Exception as e:
             logger.error("Failed to click search bar icon.")
+            logger.error("Page source: ", self.selenium.driver.page_source)
             return 1
     
     def enter_search_query(self, search_query):
