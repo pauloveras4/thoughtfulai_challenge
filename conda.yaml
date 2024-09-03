@@ -14,5 +14,7 @@ dependencies:
     - robocorp==2.0.1             # https://pypi.org/project/robocorp
     - robocorp-browser==2.3.3     # https://pypi.org/project/robocorp-browser
     - webdriver-manager
+    - webdrivermanager
     - requests
     - python-dateutil
+    - selenium-stealth

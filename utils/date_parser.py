@@ -13,37 +13,34 @@ class DateParser(object):
             
             delta = timedelta(minutes=amt_minutes)
             
-            # Adjusting for Chicago timezone
-            gmt_minus_5 = timezone(timedelta(hours=-5))
-            current_time_gmt_minus_5 = datetime.now(gmt_minus_5)
-            
-            news_date = current_time_gmt_minus_5 - delta
+            news_date = datetime.now() - delta
             return datetime.strftime(news_date, "%Y-%m-%d %H>%M")
         
-        if "min ago" in self.date:
-            amt_minutes = int(self.date[:-8])
+        if "m ago" in self.date:
+            amt_minutes = int(self.date[:-5])
             amt_minutes *= -1
             
             delta = timedelta(minutes=amt_minutes)
             
-            # Adjusting for Chicago timezone
-            gmt_minus_5 = timezone(timedelta(hours=-5))
-            current_time_gmt_minus_5 = datetime.now(gmt_minus_5)
-            
-            news_date = current_time_gmt_minus_5 - delta
+            news_date = datetime.now() - delta
             return datetime.strftime(news_date, "%Y-%m-%d %H:%M")
         
         if "an hour ago" in self.date:
             delta = timedelta(hours=-1)
             
-            # Adjusting for Chicago timezone
-            gmt_minus_5 = timezone(timedelta(hours=-5))
-            current_time_gmt_minus_5 = datetime.now(gmt_minus_5)
-            
-            news_date = current_time_gmt_minus_5 - delta
+            news_date = datetime.now() - delta
             return datetime.strftime(news_date, "%Y-%m-%d %H:%M") 
         
-        if ("PM" in self.date) or ("AM" in self.date):
+        if "h ago" in self.date:
+            amt_hours = int(self.date[:-5])
+            amt_hours *= -1
+                        
+            delta = timedelta(hours=amt_hours)
+            
+            news_date = datetime.now() - delta
+            return datetime.strftime(news_date, "%Y-%m-%d %H:%M")
+        
+        """ if ("PM" in self.date) or ("AM" in self.date):
             try:
                 date_today = date.today().strftime("%Y-%m-%d")
                 hour_and_minute_without_timezone = self.date[:-6]
@@ -63,14 +60,78 @@ class DateParser(object):
                 news_datetime = news_datetime - gmt_minus_5.utcoffset(news_datetime) 
                 return datetime.strftime(news_datetime, "%Y-%m-%d %H:%M")
             except Exception as e:
-                return 1
-        news_date = datetime.strptime(self.date, "%B %d, %Y")
-        return datetime.strftime(news_date, "%Y-%m-%d %H:%M")
+                return 1 """
+        
+        months_array_from_site = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+        
+        # If news is in current month
+        if any([month in str for month in months_array_from_site]) and not "," in self.date:
+            month_shortened = self.date.split(' ')[0][:3]
+            day = self.date.split(' ')[1]
+            year = str(datetime.now().year)
+            news_date = f"{month_shortened} {day} {year}"
+            return datetime.strftime(news_date, "%b %d %Y")
+        
+        month_shortened = self.date.split(' ')[0][:3]
+        day = self.date.split(' ')[1].replace(",", "")
+        year = self.date.split(' ')[2]
+        news_date = f"{month_shortened} {day} {year}"
+        return datetime.strftime(news_date, "%b %d %y")
     
-    @staticmethod
     def parse_string_to_proper_date(date):
-        return datetime.strptime(date, "%Y-%m-%d %H:%M")
-   
+        months_array_from_site = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+        try:
+            if "a min ago" in date:
+                amt_minutes = -1
+            
+                delta = timedelta(minutes=amt_minutes)
+            
+                
+                news_date = datetime.now() - delta
+                return news_date
+            
+            if "m ago" in date:
+                amt_minutes = int(date[:-5])
+                amt_minutes *= -1
+                
+                delta = timedelta(minutes=amt_minutes)
+                
+                news_date = datetime.now() - delta
+                return news_date
+            
+            if "1h ago" in date:
+                delta = timedelta(hours=-1)
+                
+                # Adjusting for Chicago timezone
+                
+                news_date = datetime.now() - delta
+                return news_date
+            
+            if "h ago" in date:
+                amt_hours = int(date[:-5])
+                amt_hours *= -1
+                            
+                delta = timedelta(hours=amt_hours)
+                
+                news_date = datetime.now() - delta
+                return news_date
+             
+        # If news is in current month
+            if any([month in date for month in months_array_from_site]) and not "," in date:
+                month_shortened = date.split(' ')[0][:3]
+                day = date.split(' ')[1]
+                year = str(datetime.now().year)
+                news_date = f"{month_shortened} {day} {year}"
+                return datetime.strptime(news_date, "%b %d %Y")
+            
+            month_shortened = date.split(' ')[0][:3]
+            day = date.split(' ')[1].replace(",", "")
+            year = date.split(' ')[2]
+            news_date = f"{month_shortened} {day} {year}"
+            return datetime.strptime(news_date, "%b %d %y")
+        except Exception as e:
+             return 1
+         
     @staticmethod
     def get_final_date(months_index):
         if months_index < 0:

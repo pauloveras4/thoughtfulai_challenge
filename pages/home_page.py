@@ -13,6 +13,21 @@ from pages.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 
+class AcceptAllCookiesButtonElement(BasePageElement):
+    """
+    This class finds the element for the accept cookies button which will be clicked.
+    
+    Attributes
+    -----------
+    locator : By
+        locator for the element which will be clicked
+    """
+    
+    def __init__(self, selenium):
+        super()
+        self.selenium = selenium
+    
+    locator = HomePageLocators.HOME_PAGE_ACCEPT_ALL_COOKIES_BUTTON
 class SearchBarIconButtonElement(BasePageElement):
     """
     This class finds the element for the search bar icon which will be clicked so the modal appears. 
@@ -59,6 +74,20 @@ class HomePage(BasePage):
     
     def __init__(self, selenium):
        self.selenium = selenium
+       
+    def click_accept_all_cookies_button(self):
+        logger.info("Clicking accept all cookies button.")
+        try:
+            cookies_button_element = AcceptAllCookiesButtonElement(self.selenium)
+            logger.info("Waiting for AcceptAllCookiesButtonElement to appear...")
+            cookies_button_element.__wait__()
+            logger.info("Clicking AcceptAllCookiesButtonElement...")
+            cookies_button_element.__click__()
+            logger.info("Clicked AcceptAllCookiesButtonElement successfully! :D")
+            return 0
+        except:
+            logger.error("Failed to click accept all cookies button.")
+            return 1
 
     def click_search_bar_icon(self):
         logger.info("Clicking search bar icon.")
@@ -72,7 +101,7 @@ class HomePage(BasePage):
             return 0
         except Exception as e:
             logger.error("Failed to click search bar icon.")
-            return 2
+            return 1
     
     def enter_search_query(self, search_query):
         logger.info("Typing text into search bar")

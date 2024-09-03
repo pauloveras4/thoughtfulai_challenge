@@ -1,10 +1,12 @@
 import logging
 import requests
 import re
+import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.select import Select
 
 from elements.element import BasePageElement
 from locators.results_page_locators import ResultsPageLocators
@@ -64,7 +66,7 @@ class SortByOrderDropDownElement(BasePageElement):
         super()
         self.selenium = selenium
     
-    locator = ResultsPageLocators.RESULTS_PAGE_SORT_BY_SELECT_BUTTON_LOCATOR
+    locator = ResultsPageLocators.RESULTS_PAGE_SORT_BY_SELECT_LOCATOR
     
 class SortByOrderItemElement(BasePageElement):
     """
@@ -101,8 +103,28 @@ class HeadingArticleElement(BasePageElement):
         self.selenium = selenium
         self.index = index
         self.locator = ResultsPageLocators.RESULT_ITEM_HEADING_LOCATOR(self.index)
+
+class DescriptionArticleElement(BasePageElement):
+    """
+    This class initializes the descripton for the current item.
+    
+    Attributes
+    -----------
+    locator : By
+        locator for the element from which the text will be extracted
+    
+    index : str
+        current index in str format
+    """
+    
+    def __init__(self, selenium, index):
+        super()
+        self.selenium = selenium
+        self.index = index
+        self.locator = ResultsPageLocators.RESULT_ITEM_DESCRIPTION_LOCATOR(self.index)
         
 class DateArticleElement(BasePageElement):
+    
     """
     This class initializes the date for the current item.
     
@@ -218,14 +240,14 @@ class ResultsPage(BasePage):
             logger.fatal("Unable to find or select filter from dropdown")
             return 1
 
-    def _click_sort_by_order_dropdown(self):
+    def select_from_sort_by_order_dropdown(self):
         logger.info("Clicking sort by dropdown.")
         try:
             sort_by_order_dropdown_element = SortByOrderDropDownElement(self.selenium)
             logger.info("Waiting for SortByOrderDropDownElement to appear...")
             sort_by_order_dropdown_element.__wait__()
             logger.info("Clicking SortByOrderDropDownElement...")
-            sort_by_order_dropdown_element.click()
+            sort_by_order_dropdown_element.__select_by_value__("newest")
             logger.info("Clicked SortByOrderDropDownElement successfully! :D") 
             return 0
         except Exception as e:
@@ -240,7 +262,6 @@ class ResultsPage(BasePage):
             logger.info("Waiting for SortByOrderItemElement to appear...")
             sort_by_order_item_element.__wait__()
             logger.info("Clicking desired order item in SortByOrderItemElement")
-            sort_by_order_item_element.__click__() 
             logger.info("Selected order successfully! :)")
             return 0
         except Exception as e:
@@ -282,31 +303,34 @@ class ResultsPage(BasePage):
     def _iter_through_current_news_article(self, index_current_item, search_query):
         logger.info("Iterating through current news article.")
        
-        # Pass current index as string 
-        current_index_str = str(index_current_item + 1)
+        if index_current_item == 1 or index_current_item == 2:
+            current_index_str = str(index_current_item)
+        elif index_current_item > 2:
+            current_index_str = str(index_current_item - 1)      
+            
         try:
+            time.sleep(1)
             logger.info("Capturing title from article...")
             title_element = HeadingArticleElement(self.selenium, current_index_str)
             title_element.__wait__()
             
             title = title_element.__get_attribute__("textContent")
             logger.info("Current news article title: ", title)
-             
+            
             logger.info("Capturing date from article...") 
             date = DateArticleElement(self.selenium, current_index_str). \
             __get_attribute__("textContent")
            
-            logger.info("Parsing date into proper string") 
-            date = DateParser(date).parse_date_to_proper_string() 
-            logger.info("Current news article date: ", date)
+            #logger.info("Parsing date into proper string") 
+            #date = DateParser(date).parse_date_to_proper_string() 
+            logger.info("Current news article date: ", str(date))
             
             logger.info("Capturing image from article")
             image = ImageArticleElement(self.selenium, current_index_str)
+             
             image_attrs = {}
-            image_attrs['alt'] = image.__get_attribute__("alt")
             image_attrs['src'] = image.__get_attribute__("src")
             
-            logger.info("Current image title: ", image_attrs['alt']) 
             
             # If current item's index is divisible by 5, move viewport to current image
             if index_current_item % 5 == 0:
@@ -314,12 +338,14 @@ class ResultsPage(BasePage):
                         
             # Initializes variables for image parsing
             image_source = image_attrs['src']
-            image_alt = image_attrs['alt']
-            image_alt = re.sub('[^A-Za-z0-9 ]+', '', image_alt)
-            image_filename =  f"{image_alt}.jpg"
-            
+            image_name = title
+
+
             # Removes special characters from image alt
-                        # Downlaods image into output folder 
+            image_name = re.sub('[^A-Za-z0-9 ]+', '', image_name)
+            image_filename =  f"{image_name}.jpg"
+            
+            # Downloads image into output folder 
             self._download_image(image_source, image_filename)
            
             # Gets count of how many times search query appears in article title 
@@ -329,7 +355,7 @@ class ResultsPage(BasePage):
             currency_in_title = CurrencyParser(title).verifies_title_contains_currency()
                        
             return {
-                'title': title, 
+                'title': title,
                 'date': date, 
                 'filename_image': image_filename, 
                 'search_query_count': search_query_count, 
@@ -337,6 +363,7 @@ class ResultsPage(BasePage):
                 }
             
         except Exception as e:
+            self._click_next_stories_button()
             logger.fatal("Unable to find current news item")
             
     def _extract_number_of_results_from_total_in_page(self, total_results_string):
@@ -368,14 +395,13 @@ class ResultsPage(BasePage):
             logger.info("Waiting for TotalResultsElement to appear...")
             total_results_element.__wait__()
             logger.info("Capturing total results in page...")            
-            total_results = total_results_element.__get_attribute__("textContent")
-            total_results = self._extract_number_of_results_from_total_in_page(total_results) 
+            total_results = total_results_element.__get_total_elements__()
             logger.info("Total number of results in page: ", total_results)
             return total_results
         except Exception as e:
             logger.fatal("Unable to find or capture total amount of results in page.")
             return 1
-            
+    
     def _iter_through_current_news_page(self, stop_signal):
         try:
             # Initializes array which will contain the news for the current page
@@ -386,50 +412,54 @@ class ResultsPage(BasePage):
             
             # Gets total amount of results in page 
             total_results = self._get_total_items_in_page()
-            total_results_index = total_results
            
            # Iterates through total results in page 
-            for article_index in range(0, total_results_index):
-                # Capture data from current article and stores it in a dictionary
-                current_article = self._iter_through_current_news_article(article_index, self.search_query)
-                # Gets current date 
-                current_date = current_article['date']
-                # Parses current date back into datetime for comparison with final date
-                current_date_parsed_to_datetime = DateParser.parse_string_to_proper_date(current_date)
-               
-                # If current date is less than final date, stop capturing articles and return
-                # total no. of results, stop signal and news page array 
-                if current_date_parsed_to_datetime < final_date:
-                    stop_signal = True
-                    return total_results, stop_signal, news_page_array
+            for article_index in range((total_results-10)+1, total_results):
+                try:
+                    time.sleep(1)
+                    # Capture data from current article and stores it in a dictionary
+                    current_article = self._iter_through_current_news_article(article_index, self.search_query)
+                    # Gets current date 
+                    current_date = current_article['date']
+                    # Parses current date back into datetime for comparison with final date
+                    current_date_parsed_to_datetime = DateParser.parse_string_to_proper_date(current_date)
                 
-                news_page_array.append(current_article)
-
-            return total_results, stop_signal, news_page_array
+                    # If current date is less than final date, stop capturing articles and return
+                    # total no. of results, stop signal and news page array 
+                    if current_date_parsed_to_datetime < final_date:
+                        stop_signal = True
+                        return stop_signal, news_page_array
+                    
+                    news_page_array.append(current_article)
+                except Exception as e:
+                    pass
+                    
+            self._click_next_stories_button()
+            
+            return stop_signal, news_page_array
         
         except Exception as e:
-            return 1   
+            return stop_signal, news_page_array
     
     def iter_through_all_news_until_date(self):
        # Initializes array which will contain the news for all pages
        total_news_array = []
+       news_array = []
        
        # Initializes stop signal as false 
        stop_signal = False
         
        # While stop signal is not false, process news
        while not stop_signal:
-            total_results, stop_signal, news_array = self._iter_through_current_news_page(stop_signal)
-           
-            # Appends all items in news_array to total_news_array
-            [total_news_array.append(x) for x in news_array]    
+            try:
+                stop_signal, news_array = self._iter_through_current_news_page(stop_signal)
             
-            # If has finished processing page, click next stories button to get more
-            # articles
-            if total_results == 20:
-                self._click_next_stories_button()
-                                        
-       print(total_news_array)
+                # Appends all items in news_array to total_news_array
+                [total_news_array.append(x) for x in news_array]    
+            except Exception as e:
+                [total_news_array.append(x) for x in news_array]
+                pass
+             
        return total_news_array
         
         

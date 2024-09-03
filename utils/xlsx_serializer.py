@@ -1,4 +1,3 @@
-from RPA.Excel.Application import Application
 from RPA.Excel.Files import Files
 
 class XLSXSerializer(object):

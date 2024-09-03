@@ -20,9 +20,9 @@ class BasePage(object):
     def __init__(self, selenium):
         self.selenium = selenium
     
-    def access_reuters_page(self):
+    def access_ny_times_page(self):
         """
-        Access Reuters page @ www.reuters.com.
+        Access New York Times page @ www.nytimes.com.
         
         Returns:
         -------
@@ -30,10 +30,10 @@ class BasePage(object):
             1 (int): whoops, there was a problem accessing the site...
             2 (int): there was a problem locating the header element
         """
-        logger.info("Accessing Reuters page.")
+        logger.info("Accessing New York Times page.")
         try:
-            self.selenium.open_url("https://www.reuters.com")
+            self.selenium.open_url("https://www.nytimes.com")
             logger.info("Checking news header exists.")
         except Exception as e:
-            logger.error("An error occurred while trying to access Reuters page. The following exception occurred: ", str(e))
+            logger.error("An error occurred while trying to access New York Times page.")
             return 1
